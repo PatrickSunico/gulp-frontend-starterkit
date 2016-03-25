@@ -1,0 +1,25 @@
+{
+  "name": "blog-reposte",
+  "description": "front-end dependenciees",
+  "main": "app.js",
+  "authors": [
+    "Chikoystarr <chikoystarr@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "^2.2.2",
+    "bootstrap": "^3.3.6"
+  },
+  "dependencies": {
+    "normalize-css": "^4.0.0"
+  }
+}
