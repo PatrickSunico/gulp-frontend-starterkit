@@ -44,14 +44,12 @@ p {
     width: 300px;
     height: 100%;
     background: #373F51;
-    border-right: 1px solid #e7e7e7;
   }
   .side-menu .navbar {
     border: none;
   }
   .side-menu .navbar-header {
     width: 100%;
-    border-bottom: 1px solid #e7e7e7;
   }
   .side-menu .brand-name-wrapper {
     min-height: 50px;
@@ -63,6 +61,22 @@ p {
 }
 
 @media only screen and (min-width: 1200px) {
+  @-webkit-keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   .side-menu-container.navbar-right {
     display: block;
     padding: 0;
@@ -70,30 +84,43 @@ p {
   }
   .side-menu-container .navbar-nav .active > a {
     color: #fff;
-    background: transparent;
-    margin: -1px;
-    border-right: 5px solid #e7e7e7;
+    background-color: #373F51;
   }
-  .side-menu-container .navbar-nav li {
+  .side-menu-container .navbar-nav .active > a:hover {
+    background-color: #e7e7e7;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    -webkit-animation: fade-in 0.4s linear;
+            animation: fade-in 0.4s linear;
+  }
+  .side-menu-container .navbar-nav li.dashboard {
+    margin: 0 auto;
     display: block;
     width: 100%;
-    border-bottom: 1px solid #e7e7e7;
   }
-  .side-menu-container .navbar-nav li a {
+  .side-menu-container .navbar-nav li.dashboard a {
+    padding: 20px 10px;
     color: #fff;
   }
-  .side-menu-container .navbar-nav li a .glyphicon {
+  .side-menu-container .navbar-nav li.dashboard a .dashboard-link {
     padding-right: 10px;
   }
 }
 
 /*profile + imgplaceholder*/
-.profile .img-placeholder {
+li.profile {
+  border-top: solid 1px #fff;
+  border-bottom: solid 1px #fff;
+  margin: 30px 0;
+  padding: 0 20px;
+}
+
+li.profile .img-placeholder {
   padding: 10px;
   display: inline-block;
 }
 
-.profile .img-placeholder img {
+li.profile .img-placeholder img {
   display: inline-block;
   overflow: hidden;
   border-radius: 100%;
@@ -101,40 +128,40 @@ p {
   width: 100px;
 }
 
-.profile .text-placeholder {
+li.profile .text-placeholder {
   padding: 10px;
   display: inline-block;
   vertical-align: middle;
 }
 
-.profile .text-placeholder h1 {
+li.profile .text-placeholder h1 {
   line-height: 2;
   margin: 0;
   font-size: 20px;
   color: white;
 }
 
-.profile .text-placeholder h2 {
+li.profile .text-placeholder h2 {
   margin: 0;
   font-size: 16px;
   color: white;
 }
 
-.profile .text-placeholder .links {
+li.profile .text-placeholder .links {
   overflow: hidden;
 }
 
-.profile .text-placeholder .links a {
+li.profile .text-placeholder .links a {
   text-decoration: none;
   color: white;
 }
 
-.profile .text-placeholder .links:nth-last-child(2) {
+li.profile .text-placeholder .links:nth-last-child(2) {
   margin-top: 24px;
   float: right;
 }
 
-.profile .text-placeholder .links:nth-last-child(1) {
+li.profile .text-placeholder .links:nth-last-child(1) {
   margin-top: 24px;
   float: left;
 }

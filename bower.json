@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.6"
   },
   "dependencies": {
-    "normalize-css": "^4.0.0"
+    "normalize-css": "^4.0.0",
+    "font-awesome": "^4.5.0"
   }
 }

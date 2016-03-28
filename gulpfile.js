@@ -1,21 +1,31 @@
 var gulp = require("gulp"),
-  minifyJs = require("gulp-uglify"), //Minify JS
-  concat = require("gulp-concat"), // concatenate separate js files in raw folder
-  sass = require("gulp-sass"), // compile all sass files in raw folder into one main.css
-  rename = require("gulp-rename"), // renames a compiled css file.
-  minifyCss = require("gulp-minify-css"),
-  plumber = require("gulp-plumber"), // error handlings
-  imagemin = require("gulp-imagemin"), // minify asset images
-  browserSync = require("browser-sync"), //live from the browser
-  usemin = require("gulp-usemin"), //bundles all hrefs in the raw index file and distributes it in the dist file
-  prefix = require("gulp-autoprefixer"), //auto prefixes vendor prefixes for sass
+    minifyJs = require("gulp-uglify"), //Minify JS
+    concat = require("gulp-concat"), // concatenate separate js files in raw folder
+    sass = require("gulp-sass"), // compile all sass files in raw folder into one main.css
+    rename = require("gulp-rename"), // renames a compiled css file.
+    minifyCss = require("gulp-minify-css"),
+    plumber = require("gulp-plumber"), // error handlings
+    imagemin = require("gulp-imagemin"), // minify asset images
+    browserSync = require("browser-sync"), //live from the browser
+    usemin = require("gulp-usemin"), //bundles all hrefs in the raw index file and distributes it in the dist file
+    prefix = require("gulp-autoprefixer"), //auto prefixes vendor prefixes for sass
+    gutil = require("gulp-util"),
+    inject = require("gulp-inject"),
   //Not Installed
   getFile = require("gulp-bower"), //moves installed bower packages to our dist file
   flatten = require("gulp-flatten"); //retrieves a specific file from our bower components //check npm docs for more
 
+//Testing
+//************************************************************************
+
+
+//************************************************************************
+
+
 
 //Don't remove
 var reload = browserSync.reload;
+
 
 //file paths
 var paths = {
@@ -23,6 +33,7 @@ var paths = {
   styles: 'raw/scss/**/*.*',
   rawIndex: 'raw/index.html',
   img: 'raw/img/*',
+  ejs: 'raw/views/*.ejs',
   bower_fonts: 'bower_components/**/*.{ttf,woff,eof,svg,eot,woff2}',
 };
 
@@ -34,7 +45,7 @@ gulp.task('usemin', function() {
     .pipe(plumber())
     .pipe(usemin({
       jslibs: ['concat'], //defined in the scripts tag area in index.html raw file
-      csslibs: ['concat'], //defined in the stylesheets tag area in index.html raw file
+      csslibs: [minifyCss(),'concat'], //defined in the stylesheets tag area in index.html raw file
       maincss: [] //defined in the stylesheets tag are in index.html raw file
     }))
     // .pipe(rename('built.html'))
@@ -43,6 +54,9 @@ gulp.task('usemin', function() {
 });
 /**********************************************************************/
 
+
+
+
 //Handle File transfers
 /**********************************************************************/
 gulp.task('copy-bower-fonts', function(){
@@ -50,9 +64,11 @@ gulp.task('copy-bower-fonts', function(){
         .pipe(rename({
           dirname: '/fonts'
         }))
-        .pipe(gulp.dest('dist/'));
+        .pipe(gulp.dest('dist/templates'));
 });
 /**********************************************************************/
+
+
 
 //scripts
 /**********************************************************************/
@@ -66,6 +82,8 @@ gulp.task('scripts', function() {
 
 });
 /**********************************************************************/
+
+
 
 //stylesheets
 //compile all scss files
@@ -83,6 +101,8 @@ gulp.task('stylesheets', function() {
 
 });
 /**********************************************************************/
+
+
 
 //compress Images
 /**********************************************************************/
@@ -105,7 +125,6 @@ gulp.task("browser-sync",function(){
   })
 });
 /**********************************************************************/
-
 
 
 //Watch files
